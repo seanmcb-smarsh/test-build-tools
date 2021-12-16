@@ -14,8 +14,7 @@ jobs:
 
     env:
       CI_TOOLS: ./ci-tools
-      ARTIFACTORY_USERNAME: sean.mcbrien
-      ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+      bamboo_hudson_artifactory_key_secret: ${{ secrets.bamboo_hudson_artifactory_key_secret }}
       
     steps:
     
@@ -27,9 +26,6 @@ jobs:
       with:
         repository:  seanmcb-smarsh/forked-build-tools 
         path: ci-tools
-        
-    - name: Docker Login
-      run: ./ci-tools/package docker_login
     
     - name: Build
       run: ./ci-tools/package-all.sh
