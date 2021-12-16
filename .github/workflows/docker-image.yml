@@ -14,6 +14,8 @@ jobs:
 
     env:
       CI_TOOLS: ./ci-tools
+      ARTIFACTORY_USERNAME: sean.mcbrien
+      ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
       
     steps:
     
@@ -26,5 +28,8 @@ jobs:
         repository:  seanmcb-smarsh/forked-build-tools 
         path: ci-tools
         
-    - name: Run build tools
+    - name: Docker Login
+      run: ./ci-tools/package docker_login
+    
+    - name: Build
       run: ./ci-tools/package-all.sh
